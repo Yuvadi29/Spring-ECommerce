@@ -29,8 +29,8 @@ public class Product {
     private Number stockQuantity;
     private String color;
     private Number size;
-    private String photos;
-    private String productDetailPhoto;
+    private String[] photos;
+    private String[] productDetailPhotos;
 
     public Product(
             String productCategories, String subcategories,
@@ -43,8 +43,8 @@ public class Product {
             Number stockQuantity,
             String color,
             Number size,
-            String photos,
-            String productDetailPhoto, ObjectId id) {
+            String[] photos,
+            String[] productDetailPhotos, ObjectId id) {
         this.productCategories = productCategories;
         this.subcategories = subcategories;
         this.productName = productName;
@@ -57,7 +57,7 @@ public class Product {
         this.color = color;
         this.size = size;
         this.photos = photos;
-        this.productDetailPhoto = productDetailPhoto;
+        this.productDetailPhotos = productDetailPhotos;
         this.id = id;
     }
 
@@ -109,5 +109,68 @@ public class Product {
         this.purchasePrice = purchasePrice;
     }
 
-    public 
+    public Number getMrpPrice() {
+        return mrpPrice;
+    }
+
+    public void setMrPrice(Number mrpPrice) {
+        this.mrpPrice = mrpPrice;
+    }
+
+    public Number getProfit() {
+        return profit;
+    }
+
+    public void setProfit(Number profit) {
+        this.profit = profit;
+    }
+
+    public Number getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(Number productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public Number getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(Number stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Number getSize() {
+        return size;
+    }
+
+    public void setSize(Number size) {
+        this.size = size;
+    }
+
+    public String[] getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String[] photos) {
+        this.photos = photos;
+    }
+
+    public String[] getProductDetailPhotos() {
+        return productDetailPhotos;
+    }
+
+    public void setProductDetailPhotos(String[] productDetailPhotos) {
+        this.productDetailPhotos = productDetailPhotos;
+    }
+
 }
