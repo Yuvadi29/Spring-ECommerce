@@ -3,7 +3,6 @@ package com.example.server.Shukra.Model;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Category {
 
     @Id
-    private ObjectId id;
+    private String id;
 
     @NotBlank
     @Size(max = 100)
@@ -20,16 +19,16 @@ public class Category {
 
     private String categoryName;
 
-    public Category(String categoryName, ObjectId id) {
+    public Category(String categoryName, String id) {
         this.categoryName = categoryName;
         this.id = id;
     }
 
     public String getId() {
-        return id.toHexString();
+        return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
