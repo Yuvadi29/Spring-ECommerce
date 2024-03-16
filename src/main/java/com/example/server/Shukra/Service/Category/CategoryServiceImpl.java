@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
             return this.categoryRepository.findAll();
         } catch (Exception e) {
             // TODO: handle exception
-            throw new Exception("Could not add category");
+            throw new Exception("Could not find category");
 
         }
     }
@@ -67,10 +67,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCat(String id){
+    public void deleteCat(String id) {
         Optional<Category> Category = this.categoryRepository.findById(id);
 
-        if(Category.isPresent()){
+        if (Category.isPresent()) {
             this.categoryRepository.delete(Category.get());
         } else {
             System.out.println("Category Not Found with Id: " + id);

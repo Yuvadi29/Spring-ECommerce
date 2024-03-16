@@ -18,10 +18,3 @@ public interface CategoryService {
     // Category getCatProd(String id);
 
 }
-
-// addCat
-// getAllCat
-// getCatProd
-// getCategoryById
-// deleteCat
-// updateCat

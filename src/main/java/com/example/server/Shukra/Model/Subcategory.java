@@ -6,7 +6,9 @@ import javax.validation.constraints.Size;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+// import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Document(collection = "Subcategory")
 public class Subcategory {
@@ -18,11 +20,15 @@ public class Subcategory {
     @Size(max = 100)
     @Indexed(unique = true)
 
+    @DBRef
+    // private String categoryId;
+    private Category category;
     private String name;
 
-    public Subcategory(String name, ObjectId id) {
+    public Subcategory(Category category, String name) {
+        this.category = category;
         this.name = name;
-        this.id = id;
+        // this.id = id;
     }
 
     public String getId() {
@@ -31,6 +37,14 @@ public class Subcategory {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getName() {
