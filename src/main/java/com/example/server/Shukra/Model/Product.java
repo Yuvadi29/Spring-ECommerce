@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Product")
@@ -18,8 +19,9 @@ public class Product {
     @Size(max = 100)
     @Indexed(unique = true)
 
+    @DBRef
     private String productCategories;
-    private String subcategories;
+    // private String subcategories;
     private String productName;
     private String description;
     private Number purchasePrice;
@@ -33,7 +35,8 @@ public class Product {
     private String[] productDetailPhotos;
 
     public Product(
-            String productCategories, String subcategories,
+            String productCategories,
+            // String subcategories,
             String productName,
             String description,
             Number purchasePrice,
@@ -46,7 +49,7 @@ public class Product {
             String[] photos,
             String[] productDetailPhotos, ObjectId id) {
         this.productCategories = productCategories;
-        this.subcategories = subcategories;
+        // this.subcategories = subcategories;
         this.productName = productName;
         this.description = description;
         this.purchasePrice = purchasePrice;
@@ -77,13 +80,13 @@ public class Product {
         this.productCategories = productCategories;
     }
 
-    public String getSubcategories() {
-        return subcategories;
-    }
+    // public String getSubcategories() {
+    //     return subcategories;
+    // }
 
-    public void setSubcategories(String subcategories) {
-        this.subcategories = subcategories;
-    }
+    // public void setSubcategories(String subcategories) {
+    //     this.subcategories = subcategories;
+    // }
 
     public String getProductName() {
         return productName;

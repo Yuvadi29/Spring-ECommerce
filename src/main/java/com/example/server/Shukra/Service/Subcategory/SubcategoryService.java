@@ -9,13 +9,13 @@ import com.example.server.Shukra.Model.Subcategory;
 public interface SubcategoryService {
     // Subcategory createSubcategory(String name, String categoryId) throws
     // Exception;
-    Subcategory createSubcategory(String name, Category category) throws Exception;
+    Subcategory createSubcategory(Subcategory subcategory) throws Exception;
 
-    List<Subcategory> getAllSubcategories() throws Exception;
+    // List<Subcategory> getAllSubcategories() throws Exception;
 
     // Subcategory getSubcategoryById(String id);
 
-    List<Subcategory> getSubcategoriesByCategoryId(String categoryId) throws Exception;
+    // List<Subcategory> getSubcategoriesByCategoryId(String categoryId) throws Exception;
 
     // Subcategory updateSubcategory(Subcategory subcategory);
 

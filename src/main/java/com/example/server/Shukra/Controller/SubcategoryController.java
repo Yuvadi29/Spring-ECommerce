@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.server.Shukra.Model.Category;
@@ -24,30 +25,28 @@ public class SubcategoryController {
     private SubcategoryService subcategoryService;
 
     @PostMapping("/subcategories/createsubcategories")
-    public ResponseEntity<Subcategory> createSubcategory(@RequestBody Category category, @RequestBody String name) {
+    public ResponseEntity<Subcategory> createSubcategory(@RequestBody Subcategory subcategory) {
         try {
-            // Subcategory createdSubcategory = subcategoryService.createSubcategory(name, categoryId);
-            // return ResponseEntity.ok().body(createdSubcategory);
-            Subcategory savedSubcategory = subcategoryService.createSubcategory(name, category);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedSubcategory);
+            Subcategory createdSubcategory = subcategoryService.createSubcategory(subcategory);
+            return ResponseEntity.ok().body(createdSubcategory);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @GetMapping("/subcategories")
-    public ResponseEntity<List<Subcategory>> getAllSubcategories() throws Exception {
-        return ResponseEntity.ok().body(subcategoryService.getAllSubcategories());
-    }
+    // @GetMapping("/subcategories")
+    // public ResponseEntity<List<Subcategory>> getAllSubcategories() throws Exception {
+    //     return ResponseEntity.ok().body(subcategoryService.getAllSubcategories());
+    // }
 
-    @GetMapping("/subcategories/{categoryId}")
-    public ResponseEntity<?> getSubcategoriesByCategoryId(@PathVariable String categoryId) throws Exception {
-        List<Subcategory> subcategories = subcategoryService.getSubcategoriesByCategoryId(categoryId);
+    // @GetMapping("/subcategories/{categoryId}")
+    // public ResponseEntity<?> getSubcategoriesByCategoryId(@PathVariable String categoryId) throws Exception {
+    //     List<Subcategory> subcategories = subcategoryService.getSubcategoriesByCategoryId(categoryId);
 
-        if (subcategories == null || subcategories.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No subcategories found for the specifed Category");
-        }
-        return ResponseEntity.ok().body(subcategories);
-    }
+    //     if (subcategories == null || subcategories.isEmpty()) {
+    //         return ResponseEntity.status(HttpStatus.NOT_FOUND)
+    //                 .body("No subcategories found for the specifed Category");
+    //     }
+    //     return ResponseEntity.ok().body(subcategories);
+    // }
 }

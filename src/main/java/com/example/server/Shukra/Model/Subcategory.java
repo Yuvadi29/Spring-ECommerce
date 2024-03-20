@@ -8,7 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-// import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Document(collection = "Subcategory")
 public class Subcategory {
@@ -20,9 +19,10 @@ public class Subcategory {
     @Size(max = 100)
     @Indexed(unique = true)
 
-    @DBRef
     // private String categoryId;
+    @DBRef(db = "Category", lazy = true)
     private Category category;
+
     private String name;
 
     public Subcategory(Category category, String name) {
