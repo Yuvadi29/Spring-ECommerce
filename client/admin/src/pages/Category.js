@@ -44,7 +44,7 @@ const Category = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${BASEURL}/api/v1/product/cat`
+          `${BASEURL}/api/v1/category/getAllCat`
         );
         const items = response?.data;
         setCategory(items);
@@ -63,10 +63,10 @@ const Category = () => {
       console.log(categoryId);
 
       const response = await axios.delete(
-        `${BASEURL}/api/v1/product/deleteCat/${categoryId}`
+        `${BASEURL}/api/v1/category/deleteCat/${categoryId}`
       );
       const updatedCategories = await axios.get(
-        `${BASEURL}/api/v1/product/cat`
+        `${BASEURL}/api/v1/category/getAllCat`
       );
       setCategory(updatedCategories.data);
 
