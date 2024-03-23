@@ -25,15 +25,15 @@ public class SubcategoryServiceImpl implements SubcategoryService {
         }
     }
 
-    // @Override
-    // public List<Subcategory> getAllSubcategories() throws Exception {
-    //     try {
-    //         return this.subcategoryRepository.findAll();
-    //     } catch (Exception e) {
-    //         // TODO: handle exception
-    //         throw new Exception("Could not find Subcategory");
-    //     }
-    // }
+    @Override
+    public List<Subcategory> getAllSubcategories() throws Exception {
+        try {
+            return this.subcategoryRepository.findAll();
+        } catch (Exception e) {
+            // TODO: handle exception
+            throw new Exception("Could not find Subcategory");
+        }
+    }
 
     // @Override
     // public List<Subcategory> getSubcategoriesByCategoryId(String categoryId) throws Exception {

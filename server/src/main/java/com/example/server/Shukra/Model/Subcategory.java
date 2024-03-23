@@ -19,7 +19,7 @@ public class Subcategory {
     @Size(max = 100)
     @Indexed(unique = true)
 
-    @DocumentReference
+    @DocumentReference(collection = "Category")
     private Category category;
 
     private String name;

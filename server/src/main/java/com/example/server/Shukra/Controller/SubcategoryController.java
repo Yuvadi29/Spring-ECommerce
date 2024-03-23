@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.server.Shukra.Model.Category;
 import com.example.server.Shukra.Model.Subcategory;
 import com.example.server.Shukra.Service.Subcategory.SubcategoryService;
 
@@ -34,10 +33,10 @@ public class SubcategoryController {
         }
     }
 
-    // @GetMapping("/subcategories")
-    // public ResponseEntity<List<Subcategory>> getAllSubcategories() throws Exception {
-    //     return ResponseEntity.ok().body(subcategoryService.getAllSubcategories());
-    // }
+    @GetMapping("/subcategories")
+    public ResponseEntity<List<Subcategory>> getAllSubcategories() throws Exception {
+        return ResponseEntity.ok().body(subcategoryService.getAllSubcategories());
+    }
 
     // @GetMapping("/subcategories/{categoryId}")
     // public ResponseEntity<?> getSubcategoriesByCategoryId(@PathVariable String categoryId) throws Exception {

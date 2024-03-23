@@ -103,10 +103,13 @@ const Subcategories = () => {
     try {
       console.log(newSubcategoryName, selectedCategoryId)
       const response = await axios.post(
-        `http://localhost:5000/api/v1/subcategories/createsubcategories`,
+        `${BASEURL}/api/v1/subcategories/createsubcategories`,
         {
           name: newSubcategoryName,
-          categoryId: selectedCategoryId,
+          category: {
+            id: selectedCategoryId,
+            categoryName: categories.categoryName,
+          },
         }
       );
 
@@ -165,7 +168,7 @@ const Subcategories = () => {
         >
           {subcategories.map((subcategory) => (
             <li
-              key={subcategory._id}
+              key={subcategory?.id}
               style={{
                 borderBottom: "1px solid #ddd",
                 marginBottom: 8,
@@ -176,13 +179,13 @@ const Subcategories = () => {
                 width: "150%",
               }}
             >
-              <span>{subcategory.name}</span>
+              <span>{subcategory?.name}</span>
               <Button
                 type="primary"
                 className="bg-yellow-500 sm:ml-5 md:mr-52"
                 size="small"
                 onClick={() =>
-                  showUpdateModal(subcategory._id, subcategory.name)
+                  showUpdateModal(subcategory?.id, subcategory?.name)
                 }
               >
                 Update
@@ -191,7 +194,7 @@ const Subcategories = () => {
                 type="danger"
                 className="bg-red-500 ml-10 float-right"
                 size="small"
-                onClick={() => handleDeleteSubcategory(subcategory._id)}
+                onClick={() => handleDeleteSubcategory(subcategory?.id)}
               >
                 Delete
               </Button>
@@ -209,7 +212,7 @@ const Subcategories = () => {
         <Button
           type="primary"
           className="bg-blue-500"
-          onClick={() => handleNewSubcategory(record._id)}
+          onClick={() => handleNewSubcategory(record?.id)}
         >
           New Subcategory for {categoryName}
         </Button>
