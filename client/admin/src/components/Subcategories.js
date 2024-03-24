@@ -26,7 +26,7 @@ const Subcategories = () => {
 
       const categoriesWithSubcategories = await Promise.all(
         response.data.map(async (category) => {
-          const subcategoriesURL = `http://localhost:5000/api/v1/subcategories/subcategories/category/${category._id}`;
+          const subcategoriesURL = `${BASEURL}/api/v1/subcategories/category/${category?.id}`;
 
           try {
             const subcategoriesResponse = await axios.get(subcategoriesURL);

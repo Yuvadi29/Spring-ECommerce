@@ -35,15 +35,13 @@ public class SubcategoryServiceImpl implements SubcategoryService {
         }
     }
 
-    // @Override
-    // public List<Subcategory> getSubcategoriesByCategoryId(String categoryId) throws Exception {
-    //     try {
-    //         // return this.subcategoryRepository.findByCategoryId(categoryId);
-    //         return subcategoryRepository.findByCategoryId(categoryId);
-    //     } catch (Exception e) {
-    //         // TODO: handle exception
-    //         throw new Exception("Could not find Subcategories by CategoryId");
-    //     }
-    // }
+    @Override
+    public List<Subcategory> getSubcategoriesByCategoryId(String categoryId) throws Exception {
+        try {
+            return subcategoryRepository.findByCategory_Id(categoryId);
+        } catch (Exception e) {
+            throw new Exception("Could not find Subcategories by CategoryId", e);
+        }
+    }
 
 }

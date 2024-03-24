@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.server.Shukra.Model.Subcategory;
@@ -38,14 +37,14 @@ public class SubcategoryController {
         return ResponseEntity.ok().body(subcategoryService.getAllSubcategories());
     }
 
-    // @GetMapping("/subcategories/{categoryId}")
-    // public ResponseEntity<?> getSubcategoriesByCategoryId(@PathVariable String categoryId) throws Exception {
-    //     List<Subcategory> subcategories = subcategoryService.getSubcategoriesByCategoryId(categoryId);
+    @GetMapping("/subcategories/category/{categoryId}")
+    public ResponseEntity<?> getSubcategoriesByCategoryId(@PathVariable String categoryId) throws Exception {
+        List<Subcategory> subcategories = subcategoryService.getSubcategoriesByCategoryId(categoryId);
 
-    //     if (subcategories == null || subcategories.isEmpty()) {
-    //         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-    //                 .body("No subcategories found for the specifed Category");
-    //     }
-    //     return ResponseEntity.ok().body(subcategories);
-    // }
+        if (subcategories == null || subcategories.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No subcategories found for the specifed Category");
+        }
+        return ResponseEntity.ok().body(subcategories);
+    }
 }
