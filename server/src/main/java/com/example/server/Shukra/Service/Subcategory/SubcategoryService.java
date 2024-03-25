@@ -13,9 +13,9 @@ public interface SubcategoryService {
 
     List<Subcategory> getSubcategoriesByCategoryId(String categoryId) throws Exception;
 
-    // Subcategory getSubcategoryById(String id);
+    Subcategory getSubcategoryById(String id);
 
-    // Subcategory updateSubcategory(Subcategory subcategory);
+    Subcategory updateSubcategory(Subcategory subcategory);
 
-    // void deleteSubcategory(String id);
+    void deleteSubcategory(String id);
 }

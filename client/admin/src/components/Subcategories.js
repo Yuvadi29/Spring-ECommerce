@@ -30,10 +30,11 @@ const Subcategories = () => {
 
           try {
             const subcategoriesResponse = await axios.get(subcategoriesURL);
-            const subcategories = subcategoriesResponse.data.subcategories.map(
+            console.log(subcategoriesResponse);
+            const subcategories = subcategoriesResponse.data?.map(
               (subcategory) => ({
                 ...subcategory,
-                categoryName: category.categoryName,
+                categoryName: category?.categoryName,
               })
             );
 
@@ -87,7 +88,7 @@ const Subcategories = () => {
   const handleDeleteSubcategory = async (subcategoryId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/v1/subcategories/subcategories/delete/${subcategoryId}`
+        `${BASEURL}/api/v1/subcategories/delete/${subcategoryId}`
       );
 
       message.success("Subcategory deleted successfully");
@@ -126,7 +127,7 @@ const Subcategories = () => {
   const handleUpdateSubcategory = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/api/v1/subcategories/subcategories/update/${selectedSubcategoryId}`,
+        `${BASEURL}/api/v1/subcategories/update/${selectedSubcategoryId}`,
         {
           name: updateSubcategoryName,
         }

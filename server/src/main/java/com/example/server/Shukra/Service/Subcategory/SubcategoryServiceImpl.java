@@ -1,6 +1,7 @@
 package com.example.server.Shukra.Service.Subcategory;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,20 @@ public class SubcategoryServiceImpl implements SubcategoryService {
         try {
             return this.subcategoryRepository.findAll();
         } catch (Exception e) {
-            // TODO: handle exception
             throw new Exception("Could not find Subcategory");
         }
+    }
+
+    @Override
+    public Subcategory getSubcategoryById(String id) {
+        Optional<Subcategory> subcategory = this.subcategoryRepository.findById(id);
+
+        if (subcategory.isPresent()) {
+            return subcategory.get();
+        } else {
+            System.out.println("Subcategory not found with id: " + id);
+        }
+        return null;
     }
 
     @Override
@@ -41,6 +53,33 @@ public class SubcategoryServiceImpl implements SubcategoryService {
             return subcategoryRepository.findByCategory_Id(categoryId);
         } catch (Exception e) {
             throw new Exception("Could not find Subcategories by CategoryId", e);
+        }
+    }
+
+    @Override
+    public Subcategory updateSubcategory(Subcategory subcategory) {
+        Optional<Subcategory> Subcategory = this.subcategoryRepository.findById(subcategory.getId());
+
+        if (Subcategory.isPresent()) {
+            Subcategory updatedSubcategory = Subcategory.get();
+            updatedSubcategory.setId(subcategory.getId());
+            updatedSubcategory.setName(subcategory.getName());
+            subcategoryRepository.save(updatedSubcategory);
+            return updatedSubcategory;
+        } else {
+            System.out.println("Record Not found with id: " + subcategory.getId());
+        }
+        return subcategory;
+    }
+
+    @Override
+    public void deleteSubcategory(String id) {
+        Optional<Subcategory> Subcategory = this.subcategoryRepository.findById(id);
+
+        if (Subcategory.isPresent()) {
+            this.subcategoryRepository.delete(Subcategory.get());
+        } else {
+            System.out.println("Subcategory Not Found with Id: " + id);
         }
     }
 
