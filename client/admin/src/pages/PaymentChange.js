@@ -3,6 +3,7 @@ import axios from "axios";
 import "../assets/styles/main.css";
 import { Input, Select } from "antd";
 import toast, { Toaster } from "react-hot-toast";
+import { BASEURL } from "../api";
 
 const { Option } = Select;
 
@@ -19,7 +20,7 @@ const PaymentChange = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
+    // console.log(name, value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -31,7 +32,7 @@ const PaymentChange = () => {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/v1/paymentmethod/paymentconfig',
+        `${BASEURL}/api/v1/paymentmethod/paymentconfig`,
         formData
       );
 
@@ -66,15 +67,19 @@ const PaymentChange = () => {
   const fetchPaymentOptions = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:5000/api/v1/paymentmethod/paymentoptions'
+        `${BASEURL}/api/v1/paymentmethod/paymentoptions`
       );
-      setPaymentOptions(response.data.paymentGatewayNames || []);
+
+      const paymentGatewayNames = response.data.map(item => item.paymentGatewayName);
+      setPaymentOptions(paymentGatewayNames);
+      console.log(paymentGatewayNames);
     } catch (error) {
       console.error("Error fetching payment options:", error.message);
     } finally {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchPaymentOptions();
@@ -116,7 +121,7 @@ const PaymentChange = () => {
           />
         </label>
 
-        <button className="rounded-md" type="submit">
+        <button className="rounded-md bg-blue-500 text-white h-auto w-full" type="submit">
           Submit
         </button>
       </form>
