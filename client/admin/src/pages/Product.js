@@ -53,22 +53,22 @@ const Product = () => {
     setIsUpdateProductModalVisible(false);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${BASEURL}/api/v1/product`
-        );
-        const items = response?.data;
-        setProduct(items);
-        console.log(items);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${BASEURL}/api/v1/product`
+  //       );
+  //       const items = response?.data;
+  //       setProduct(items);
+  //       console.log(items);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const handleProductDelete = async (product) => {
     try {

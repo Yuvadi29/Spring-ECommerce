@@ -21,6 +21,7 @@ public class ProductController {
     @PostMapping("/product/addProduct")
     public ResponseEntity<Product> addProduct(
             String productCategories,
+            String subcategories,
             String productName,
             String description,
             Number purchasePrice,
@@ -32,7 +33,8 @@ public class ProductController {
             Number size,
             @RequestParam("file") MultipartFile[] photos,
             @RequestParam("file") MultipartFile[] productDetailPhotos) {
-        Product saveProduct = productService.addProduct(productCategories, productName, description, purchasePrice,
+        Product saveProduct = productService.addProduct(productCategories, subcategories, productName, description,
+                purchasePrice,
                 mrpPrice, profit, productQuantity, stockQuantity, color, size, photos, productDetailPhotos);
         return ResponseEntity.ok().body(saveProduct);
     }

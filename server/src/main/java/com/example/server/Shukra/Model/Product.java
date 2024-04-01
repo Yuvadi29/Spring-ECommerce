@@ -21,7 +21,7 @@ public class Product {
 
     @DBRef
     private String productCategories;
-    // private String subcategories;
+    private String subcategories;
     private String productName;
     private String description;
     private Number purchasePrice;
@@ -36,7 +36,7 @@ public class Product {
 
     public Product(
             String productCategories,
-            // String subcategories,
+            String subcategories,
             String productName,
             String description,
             Number purchasePrice,
@@ -49,7 +49,7 @@ public class Product {
             String[] photos,
             String[] productDetailPhotos, ObjectId id) {
         this.productCategories = productCategories;
-        // this.subcategories = subcategories;
+        this.subcategories = subcategories;
         this.productName = productName;
         this.description = description;
         this.purchasePrice = purchasePrice;
@@ -80,13 +80,13 @@ public class Product {
         this.productCategories = productCategories;
     }
 
-    // public String getSubcategories() {
-    //     return subcategories;
-    // }
+    public String getSubcategories() {
+        return subcategories;
+    }
 
-    // public void setSubcategories(String subcategories) {
-    //     this.subcategories = subcategories;
-    // }
+    public void setSubcategories(String subcategories) {
+        this.subcategories = subcategories;
+    }
 
     public String getProductName() {
         return productName;

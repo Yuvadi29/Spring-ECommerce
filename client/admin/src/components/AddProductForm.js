@@ -40,12 +40,12 @@ const AddProductForm = ({ visible, onClose }) => {
     }
   };
 
-  const handleCategoryChange = async (category) => {
+  const handleCategoryChange = async (categoryId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/subcategories/subcategories/category/${category}`
+        `${BASEURL}/api/v1/subcategories/category/${categoryId}`
       );
-      const items = response?.data.subcategories;
+      const items = response?.data;
       setSubcategories(items);
     } catch (error) {
       console.error("Error fetching subcategories:", error);
@@ -57,26 +57,26 @@ const AddProductForm = ({ visible, onClose }) => {
       const values = await form.validateFields();
 
       const formData = new FormData();
-      formData.append("productThumbnail", file);
+      formData.append("productName", values.productName);
+      formData.append("description", values.description);
+      formData.append("productCategories", values.productCategories);
+      formData.append("subcategories", values.subcategories);
+      formData.append("purchasePrice", values.purchasePrice);
+      formData.append("mrpPrice", values.mrpPrice);
+      formData.append("productQuantity", values.productQuantity);
+      formData.append("stockQuantity", values.stockQuantity);
+      formData.append("size", values.size);
+      formData.append("photos", file);
       console.log(file);
-      // const response = await axios.post(
-      //   "http://localhost:5000/api/v1/product/addProduct",
-      //   formData,
-      //   {
-      //     headers: { "Content-Type": "multipart/form-data" },
-      //   }
-      // );
-
       // Make API request to add product
       const response = await axios.post(
         `${BASEURL}/api/v1/product/addProduct`,
-        values,
+        formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
 
-      // Handle success, e.g., show a success message
       message.success("Product added successfully");
       form.resetFields();
       onClose();
@@ -141,7 +141,7 @@ const AddProductForm = ({ visible, onClose }) => {
           </Select>
         </Form.Item>
 
-        {/* <Form.Item
+        <Form.Item
           label="Product Sub-Category"
           name="subcategories"
           rules={[
@@ -153,12 +153,12 @@ const AddProductForm = ({ visible, onClose }) => {
         >
           <Select placeholder="Select a Sub-Category">
             {subcategories.map((subcategory) => (
-              <Option key={subcategory._id} value={subcategory._id}>
+              <Option key={subcategory?.id} value={subcategory?.id}>
                 {subcategory?.name}
               </Option>
             ))}
           </Select>
-        </Form.Item> */}
+        </Form.Item>
 
         <Form.Item
           label="Purchase Price"
@@ -188,7 +188,7 @@ const AddProductForm = ({ visible, onClose }) => {
 
         <Form.Item
           label="Product Thumbnail Image"
-          name="productThumbnail"
+          name="photos"
           rules={[
             {
               required: true,

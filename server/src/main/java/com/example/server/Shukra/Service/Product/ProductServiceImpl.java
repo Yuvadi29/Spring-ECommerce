@@ -1,6 +1,5 @@
 package com.example.server.Shukra.Service.Product;
 
-import java.io.IOException;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product addProduct(
             String productCategories,
+            String subcategories,
             String productName,
             String description,
             Number purchasePrice,
@@ -63,6 +63,7 @@ public class ProductServiceImpl implements ProductService {
 
             Product product = new Product(
                     productCategories,
+                    subcategories,
                     productName,
                     description,
                     purchasePrice,
